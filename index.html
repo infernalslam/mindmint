@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-base64/2.0.5/angular-base64.min.js"></script>
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  </head>
+  <body ng-controller="TodoListController">
+    <button ng-click='click()'>click to select and get base64</button>
+    <button ng-click="insert()">inser CCTV</button>
+    <br>
+
+        <!-- <div ng-show="showCamera" ng-repeat="show in cameraStyle">
+        <div class="camera" ng-style="{
+          'background': '{{show.background}}',
+          'position': 'absolute',
+          'width': '100px',
+          'height': '100px',
+          'top': '{{show.x}}px'
+        }">
+        {{show.id}} <br> <p style="text-align: center;cursor: move;" ng-click="moveObj(show.id)">MOVE</p>
+          X : {{show.x}}  Y: {{show.y}}
+      </div>
+      </div> -->
+
+      <div  id="{{item.id}}" ng-repeat="item in cameraStyle" ng-mouseup="moveObj(item.id)">
+          <p>drag me {{item.id}}</p>
+          {{init()}}
+      </div>
+
+        <!-- ng-mousemove="MouseMove($event)" -->
+        <div ng-show="showImage">
+        <img src="{{ data.b64 }}">
+        </div>
+
+    <div style='word-wrap:break-word'>
+  </body>
+</html>
