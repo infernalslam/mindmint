@@ -38,7 +38,8 @@ angular.module('todoApp', ['base64'])
           background: 'rgb(53, 255, 195)',
           width: '1em',
           height: '1em',
-          animation: 'ripple 0.7s linear infinite'
+          animation: 'ripple 0.7s linear infinite',
+          'border-radius': '50%'
         }
       }
       $scope.cameraStyle.push(cameraStyle)
