@@ -32,11 +32,12 @@
         <div id="{{item1.id}}" ng-repeat="item1 in raduisStyle" ng-mouseup="moveObjraduisStyle(item1.id)">
           <p ng-click="tranformcctv(item1.id)">{{ item1.id }}</p>
           {{ initraduisStyle() }}
+          {{ cctvSubmit() }}
       </div> 
 
     
         <div ng-show="showImage">
-        <img src="{{ data.b64 }}">
+          <img src="{{ data.b64 }}">
         </div>
 
     <div style='word-wrap:break-word'>

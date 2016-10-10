@@ -131,7 +131,7 @@ angular.module('todoApp', ['base64'])
     $scope.cctvSubmit = function () {
       console.log($scope.raduisStyle[$scope.idCctv])
       $scope.raduisStyle[$scope.idCctv].css.transform = 'rotate('+$scope.range+'deg)'
-      $scope.showRange = false
+      // $scope.showRange = false
       $scope.idCctv = 0
     }
     ///////////////////////////////////////////////////
