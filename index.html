@@ -11,28 +11,30 @@
   </head>
   <body ng-controller="TodoListController">
     <button ng-click='click()'>click to select and get base64</button>
-    <button ng-click="insert()">inser CCTV</button>
+    <button ng-click="insert()">insert WIFI</button>
+    <button ng-click="raduis()">insert cctv</button> 
+    <div ng-show="showRange">
+    <br>
+      raduis cctv  
+      <form ng-submit="cctvSubmit()">
+        <!-- <input type="number" ng-model="range"> -->
+        <input type="range" min="0" max="360" ng-model="range"> {{ range }} <button ng-click="showRange=false" type="submit">X</button>
+      </form>
+    </div>
     <br>
 
-        <!-- <div ng-show="showCamera" ng-repeat="show in cameraStyle">
-        <div class="camera" ng-style="{
-          'background': '{{show.background}}',
-          'position': 'absolute',
-          'width': '100px',
-          'height': '100px',
-          'top': '{{show.x}}px'
-        }">
-        {{show.id}} <br> <p style="text-align: center;cursor: move;" ng-click="moveObj(show.id)">MOVE</p>
-          X : {{show.x}}  Y: {{show.y}}
-      </div>
-      </div> -->
 
-      <div  id="{{item.id}}" ng-repeat="item in cameraStyle" ng-mouseup="moveObj(item.id)">
-          <p>drag me {{item.id}}</p>
-          {{init()}}
-      </div>
+   <div  id="{{item.id}}" ng-repeat="item in cameraStyle" ng-mouseup="moveObj(item.id)">
+          <p>{{ item.id }}</p>
+          {{ init() }}
+      </div> 
 
-        <!-- ng-mousemove="MouseMove($event)" -->
+        <div id="{{item1.id}}" ng-repeat="item1 in raduisStyle" ng-mouseup="moveObjraduisStyle(item1.id)">
+          <p ng-click="tranformcctv(item1.id)">{{ item1.id }}</p>
+          {{ initraduisStyle() }}
+      </div> 
+
+    
         <div ng-show="showImage">
         <img src="{{ data.b64 }}">
         </div>
