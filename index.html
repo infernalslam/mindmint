@@ -30,7 +30,7 @@
 			{{ initraduisStyle() }}
 			{{ cctvSubmit() }}
 		</div>
-		
+
 		<div ng-show="showImage">
 			<img src="{{ data.b64 }}">
 		</div> -->
@@ -43,10 +43,11 @@
 			<div id="column_left">
 				<div ng-show="showRange">
 					<br>
-					raduis cctv
+					raduis cctv {{idCctv}}
 					<form ng-submit="cctvSubmit()">
 						<!-- <input type="number" ng-model="range"> -->
 						<input type="range" min="0" max="360" ng-model="range"> {{ range }} <button ng-click="showRange=false" type="submit">X</button>
+						<input type="range" min="0" max="500" ng-model="width"> {{ width }}
 					</form>
 				</div>
 			</div>
@@ -54,9 +55,9 @@
 				<div  id="{{item.id}}" ng-repeat="item in cameraStyle" ng-mouseup="moveObj(item.id)">
 					<p>{{ item.id }}</p>{{ init() }}
 				</div>
-				<div id="{{item1.id}}" ng-repeat="item1 in raduisStyle" ng-mouseup="moveObjraduisStyle(item1.id)">
+				<div id="{{item1.id}}" ng-repeat="item1 in raduisStyle" ng-mouseup="moveObjraduisStyle(item1.id)" ng-init="">
 					<p ng-click="tranformcctv(item1.id)">{{ item1.id }}</p>
-					{{ initraduisStyle() }} {{ cctvSubmit() }}
+					{{ initraduisStyle() }}
 				</div>
 				<div ng-show="showImage"><img src="{{ data.b64 }}"></div>
 			</div>

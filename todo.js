@@ -20,7 +20,7 @@ angular.module('todoApp', ['base64'])
       r.onloadend = function (e) {
         $scope.data.b64 = e.target.result
         $scope.$apply()
-        console.log($scope.data.b64.replace(/^data:image\/(png|jpg);base64,/, ''))
+        // console.log($scope.data.b64.replace(/^data:image\/(png|jpg);base64,/, ''))
         // $scope.imageBg = $scope.data.b64.replace(/^data:image\/(png|jpg);base64,/, '')
       }
       r.readAsDataURL(f)
@@ -55,7 +55,7 @@ angular.module('todoApp', ['base64'])
     }
     $scope.init = function () {
       $scope.cameraStyle.forEach(function (item) {
-        console.log(item)
+        // console.log(item)
         $('#' + item.id).draggable()
         $('#' + item.id).css(item.css)
       })
@@ -77,7 +77,7 @@ angular.module('todoApp', ['base64'])
           width: '90px',
           'border-radius': '30px 90px 0 0',
           '-webkit-border-radius': '90px 90px 0 0',
-          transform: 'rotate(0deg)'
+          'transform': 'rotate(0deg)'
         }
       }
       $scope.raduisStyle.push(cctvStyle)
@@ -86,25 +86,32 @@ angular.module('todoApp', ['base64'])
     $scope.moveObjraduisStyle = function (id) {
       $scope.raduisStyle.find(function (item) {
         if (item.id === id) {
-          item.css = $('#' + id).position()
+          item.css.top = $('#' + id).position().top
+          item.css.left = $('#' + id).position().left
         }
       })
     }
     $scope.initraduisStyle = function () {
-      $scope.raduisStyle.forEach(function (item) {
-        console.log(item)
+      $scope.raduisStyle[$scope.idCctv].css.transform = 'rotate('+$scope.range+'deg)'
+      $scope.raduisStyle[$scope.idCctv].css.width = $scope.width+'px'
+      $scope.raduisStyle[$scope.idCctv].css.height = $scope.raduisStyle[$scope.idCctv].css.width.replace(/(\d*)(px)/g, '$1')/2+'px'
+      $scope.raduisStyle.forEach(function (item, index) {
         $('#' + item.id).draggable()
         $('#' + item.id).css(item.css)
       })
     }
     $scope.range = 0
+    $scope.width = 90
     $scope.showRange = false
     $scope.idCctv = 0
     $scope.tranformcctv = function (id) {
       $scope.showRange = true
-      //console.log($scope.raduisStyle)
-      var index = $scope.raduisStyle.map(item => item.id).indexOf(id)
-      console.log($scope.raduisStyle[index].css.left)
+      var index = $scope.raduisStyle.findIndex(item => item.id === id)
+      var rotate = $scope.raduisStyle[index].css.transform.replace(/(rotate\()(\d*)(deg\))/g, '$2')
+      var width = $scope.raduisStyle[index].css.width.replace(/(\d*)(px)/g, '$1')
+      $scope.range = rotate
+      $scope.width = width
+      console.log(width)
       var data = {
         id: id,
         css: {
@@ -121,18 +128,12 @@ angular.module('todoApp', ['base64'])
           transform: 'rotate(0deg)'
         }
       }
-      $scope.raduisStyle.splice(index, 1)
-      $scope.raduisStyle.push(data)
-      var indexEdit = $scope.raduisStyle.map(item => item.id).indexOf(id)
-      console.log('id '+ id+' :' + $scope.raduisStyle[indexEdit].css.transform)
-      $scope.idCctv = indexEdit
+      // $scope.raduisStyle.splice(index, 1)
+      // $scope.raduisStyle.push(data)
+      // var indexEdit = $scope.raduisStyle.map(item => item.id).indexOf(id)
+      // console.log('id '+ id+' :' + $scope.raduisStyle[indexEdit].css.transform)
+      $scope.idCctv = index
       // $scope.raduisStyle[indexEdit].css.transform = 'rotate('+$scope.range+'deg)'
-    }
-    $scope.cctvSubmit = function () {
-      console.log($scope.raduisStyle[$scope.idCctv])
-      $scope.raduisStyle[$scope.idCctv].css.transform = 'rotate('+$scope.range+'deg)'
-      // $scope.showRange = false
-      $scope.idCctv = 0
     }
     ///////////////////////////////////////////////////
   })
